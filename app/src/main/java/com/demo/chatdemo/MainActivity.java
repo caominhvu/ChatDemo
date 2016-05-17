@@ -48,6 +48,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private class ExtractorRunnable implements Runnable {
+        private final String MENTIONS = "mentions";
+        private final String EMOTICONS = "emoticons";
+        private final String LINKS = "links";
+
         String mMsg;
         ExtractorRunnable(String msg) {
             mMsg = msg;
@@ -64,9 +68,9 @@ public class MainActivity extends AppCompatActivity {
 
             final JSONObject decipheredMsg = new JSONObject();
             try {
-                decipheredMsg.put("mentions", futures.get(0).get());
-                decipheredMsg.put("emoticons", futures.get(1).get());
-                decipheredMsg.put("links", futures.get(2).get());
+                decipheredMsg.put(MENTIONS, futures.get(0).get());
+                decipheredMsg.put(EMOTICONS, futures.get(1).get());
+                decipheredMsg.put(LINKS, futures.get(2).get());
             } catch (JSONException e) {
                 e.printStackTrace();
             } catch (InterruptedException e) {
